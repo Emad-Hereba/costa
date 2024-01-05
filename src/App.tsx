@@ -1,4 +1,3 @@
-import { createRoot } from 'react-dom/client';
 import { Form, Field, FormElement } from '@progress/kendo-react-form';
 
 import {
@@ -47,8 +46,6 @@ const App = () => {
     
 
   };
-  const domNode=document.getElementById('root');
-  const root=createRoot(domNode);
-  root.render(<App />);
+  
 
 export default App;

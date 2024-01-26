@@ -1,10 +1,9 @@
 import * as React from "react";
 
+import {ComboBox}from "@progress/kendo-react-dropdowns";
 import { FieldRenderProps, FieldWrapper } from "@progress/kendo-react-form";
 import {
   Input,
-  
-  
   Checkbox,
   RadioGroup,
 } from "@progress/kendo-react-inputs";
@@ -149,6 +148,57 @@ export const FormRadioGroup = (fieldRenderProps: FieldRenderProps) => {
           valid={valid}
           disabled={disabled}
           ref={editorRef}
+          {...others}
+        />
+        {showHint && <Hint id={hintId}>{hint}</Hint>}
+        {showValidationMessage && (
+          <Error id={errorId}>{validationMessage}</Error>
+        )}
+      </div>
+    </FieldWrapper>
+  );
+};
+export const FormComboBox = (fieldRenderProps: FieldRenderProps) => {
+  const {
+    validationMessage,
+    touched,
+    label,
+    id,
+    valid,
+    disabled,
+    hint,
+    wrapperStyle,
+    ...others
+  } = fieldRenderProps;
+  const editorRef = React.useRef<any>(null);
+
+  const showValidationMessage: string | false | null =
+    touched && validationMessage;
+  const showHint: boolean = !showValidationMessage && hint;
+  const hintId: string = showHint ? `${id}_hint` : "";
+  const errorId: string = showValidationMessage ? `${id}_error` : "";
+  const labelId: string = label ? `${id}_label` : "";
+
+  return (
+    <FieldWrapper style={wrapperStyle}>
+      <Label
+        id={labelId}
+        editorRef={editorRef}
+        editorId={id}
+        editorValid={valid}
+        editorDisabled={disabled}
+        className="k-form-label"
+      >
+        {label}
+      </Label>
+      <div className={"k-form-field-wrap"}>
+        <ComboBox
+          ariaLabelledBy={labelId}
+          ariaDescribedBy={`${hintId} ${errorId}`}
+          ref={editorRef}
+          valid={valid}
+          id={id}
+          disabled={disabled}
           {...others}
         />
         {showHint && <Hint id={hintId}>{hint}</Hint>}

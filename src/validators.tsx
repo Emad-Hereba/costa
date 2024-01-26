@@ -43,7 +43,7 @@ export const cvcValidator = (value: string) =>
     : cvcRegex.test(value) || value.length !== 3
     ? ""
     : "Not a valid CVC code format.";
-export const guestsValidator = (value) =>
+export const guestsValidator = (value: number) =>
   !value ? "Number of guests is required" : value < 5 ? "" : "Maximum 5 guests";
 export const nightsValidator = (value: string) =>
   value ? "" : "Number of Nights is required.";

@@ -1,0 +1,19 @@
+create server-api folder
+cd server-api 
+
+//create json package
+npm init --yes 
+
+// install json server
+npm i --save json-server
+
+//create db.json inside server-api folder
+fill the file with data in json format
+
+in json-pachage in the script delete the start line type
+
+"start": "json-server -p 3001 -w db.json"
+json-server --watch db.json --port 3001
+
+cd server-api and rub npm start to start json-server
+
